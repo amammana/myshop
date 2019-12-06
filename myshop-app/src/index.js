@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import './index.css';
 import BluePotato from './images/blue_potato.png'
 import GreenDrop from './images/green_drop.png'
@@ -12,7 +13,7 @@ class Product extends React.Component {
     return (
       <div className="product">
         <div>
-          <img src={this.props.img}/>
+          <img src={this.props.img} alt={this.props.name}/>
         </div>
         <div className="product-description">
           <h3>{this.props.name}</h3>
@@ -25,6 +26,10 @@ class Product extends React.Component {
 }
 
 class ShopApp extends React.Component {
+  componentDidMount(){
+    ReactGA.initialize('UA-122917699-1', {debug: true});
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
   render() {
     return (
       <div className="shop-app">
