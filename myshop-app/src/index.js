@@ -25,7 +25,7 @@ class Product extends React.Component {
       price: this.props.priceUsd,
       quantity: 1
     });
-
+    ReactGA.plugin.execute('ecommerce', 'send');
   }
 
   render() {
