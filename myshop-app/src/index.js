@@ -9,6 +9,24 @@ import YellowThingy from './images/yellow_thingy.png'
 
 
 class Product extends React.Component {
+  onBuyClick() {
+    alert('Congrats, you just bought the product!');
+    const transactionId = 'transaction_id'
+    ReactGA.plugin.execute('ecommerce', 'addTransaction', {
+      id: transactionId,
+      revenue: this.props.priceUsd,
+    });
+
+    ReactGA.plugin.execute('ecommerce', 'addItem', {
+      id: transactionId,
+      name: this.props.name,
+      sku: this.props.sku,
+      price: this.props.priceUsd,
+      quantity: 1
+    });
+
+  }
+
   render() {
     return (
       <div className="product">
@@ -18,7 +36,8 @@ class Product extends React.Component {
         <div className="product-description">
           <h3>{this.props.name}</h3>
           <div>Description: {this.props.description}</div>
-          <div>Price: {this.props.price}</div>
+          <div>Price: ${this.props.priceUsd}</div>
+          <button onClick={()=> this.onBuyClick()}>Buy</button>
         </div>
       </div>
     );
@@ -28,6 +47,7 @@ class Product extends React.Component {
 class ShopApp extends React.Component {
   componentDidMount(){
     ReactGA.initialize('UA-122917699-1', {debug: true});
+    ReactGA.plugin.require('ecommerce')
     ReactGA.pageview(window.location.pathname + window.location.search);
   }
   render() {
@@ -36,22 +56,26 @@ class ShopApp extends React.Component {
         <h1>Alessandro's store</h1>
         <Product name="Blue potato"
           description="This is an interesting blue potato"
-          price="11$"
+          priceUsd={11}
+          sku="blue_potato_sku"
           img={BluePotato}
         />
         <Product name="Green drop"
           description="You've never seen a green drop like this"
-          price="21$"
+          priceUsd={21}
+          sku="green_drop_sku"
           img={GreenDrop}
         />
         <Product name="Red vase"
           description="This red vase is amazing"
-          price="31$"
+          priceUsd={31}
+          sku="red_vase_sku"
           img={RedVase}
         />
         <Product name="Yellow thingy"
           description="What's this exactly? I don't know"
-          price="24$"
+          priceUsd={24}
+          sku="yellow_thingy_sku"
           img={YellowThingy}
         />
       </div>
