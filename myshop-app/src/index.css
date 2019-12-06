@@ -1,0 +1,19 @@
+.product {
+  border-style: solid;
+  display: flex;
+}
+
+.product div {
+  margin: auto 0px;
+}
+
+.product div img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.product-description {
+  padding: 16px;
+}
