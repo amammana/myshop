@@ -6,12 +6,13 @@ import BluePotato from './images/blue_potato.png'
 import GreenDrop from './images/green_drop.png'
 import RedVase from './images/red_vase.png'
 import YellowThingy from './images/yellow_thingy.png'
+import MagicBalls from './images/magic_balls.png'
 
 
 class Product extends React.Component {
   onBuyClick() {
     alert('Congrats, you just bought the product!');
-    const transactionId = 'transaction_id'
+    const transactionId = 'tid-' + Date.now()
     ReactGA.plugin.execute('ecommerce', 'addTransaction', {
       id: transactionId,
       revenue: this.props.priceUsd,
@@ -35,7 +36,7 @@ class Product extends React.Component {
         </div>
         <div className="product-description">
           <h3>{this.props.name}</h3>
-          <div>Description: {this.props.description}</div>
+          <div>{this.props.description}</div>
           <div>Price: ${this.props.priceUsd}</div>
           <button onClick={()=> this.onBuyClick()}>Buy</button>
         </div>
@@ -54,30 +55,36 @@ class ShopApp extends React.Component {
     return (
       <div className="shop-app">
         <h1>Alessandro's store</h1>
-        <Product name="Blue potato"
-          description="This is an interesting blue potato"
-          priceUsd={11}
-          sku="blue_potato_sku"
-          img={BluePotato}
-        />
-        <Product name="Green drop"
-          description="You've never seen a green drop like this"
-          priceUsd={21}
-          sku="green_drop_sku"
-          img={GreenDrop}
-        />
-        <Product name="Red vase"
-          description="This red vase is amazing"
-          priceUsd={31}
-          sku="red_vase_sku"
-          img={RedVase}
-        />
-        <Product name="Yellow thingy"
-          description="What's this exactly? I don't know"
-          priceUsd={24}
-          sku="yellow_thingy_sku"
-          img={YellowThingy}
-        />
+        <p>
+          In this store you are going to find beautiful images that you can buy
+        </p>
+        <img className="magic-balls" src={MagicBalls} alt="Magic balls"/>
+        <div className="product-list">
+          <Product name="Blue potato"
+            description="This is an interesting blue potato"
+            priceUsd={11}
+            sku="blue_potato_sku"
+            img={BluePotato}
+          />
+          <Product name="Green drop"
+            description="You've never seen a green drop like this"
+            priceUsd={21}
+            sku="green_drop_sku"
+            img={GreenDrop}
+          />
+          <Product name="Red vase"
+            description="This red vase is amazing"
+            priceUsd={31}
+            sku="red_vase_sku"
+            img={RedVase}
+          />
+          <Product name="Yellow thingy"
+            description="What's this exactly? I don't know"
+            priceUsd={24}
+            sku="yellow_thingy_sku"
+            img={YellowThingy}
+          />
+        </div>
       </div>
     );
   }

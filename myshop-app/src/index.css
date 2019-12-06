@@ -1,5 +1,6 @@
 .product {
   border-style: solid;
+  border-width: 1px;
   display: flex;
 }
 
@@ -16,4 +17,14 @@
 
 .product-description {
   padding: 16px;
+}
+
+.product-list {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.magic-balls {
+  width: 400px;
+  margin: 16px;
 }
