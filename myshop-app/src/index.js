@@ -8,6 +8,7 @@ import RedVase from './images/red_vase.png'
 import YellowThingy from './images/yellow_thingy.png'
 import MagicBalls from './images/magic_balls.png'
 
+const MERCHANT_ID = 124015903;
 
 class Product extends React.Component {
   onBuyClick() {
@@ -26,6 +27,16 @@ class Product extends React.Component {
       quantity: 1
     });
     ReactGA.plugin.execute('ecommerce', 'send');
+
+    const eventLabel = window.makeLabel({productSku: this.props.sku, merchantId: MERCHANT_ID});
+    if (eventLabel){
+      ReactGA.event({
+        category: "youtube",
+        action: "conversion",
+        label: eventLabel,
+        price: this.props.priceUsd,
+      });
+    }
   }
 
   render() {
@@ -47,6 +58,12 @@ class Product extends React.Component {
 
 class ShopApp extends React.Component {
   componentDidMount(){
+    // Load the shared JavaScript code
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://codepen.io/amammana/pen/rNaGBEZ.js";
+    document.head.appendChild(script);
+
     ReactGA.initialize('UA-122917699-1', {debug: true});
     ReactGA.plugin.require('ecommerce')
     ReactGA.pageview(window.location.pathname + window.location.search);
