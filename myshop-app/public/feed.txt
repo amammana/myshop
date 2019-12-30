@@ -1,6 +1,5 @@
-id	title	description	price	availability	link	image_link	youtube_group_id	brand
-blue-potato	Blue potato	This is an interesting blue potato	11 USD	in stock	https://alessandroshop.netlify.com/	
-green-thing	Green thing	This is a green thing	10 EUR	in stock	https://sites.google.com/corp/google.com/alessandrostore/home	https://lh5.googleusercontent.com/2s1HF5PS6tKLcZSd-K3THieCxjV2N14vFvhmB43iIKuN9iHmCmeDnBxnRg2z5oCgGQqd1k50DuKayWqubbNQIvZdOBze8V2efKfo0cl5FPndkLy9Y959=w170	foo	Brand Foo
-red-thing	Red thing	This is a red thing	15 EUR	in stock	https://sites.google.com/corp/google.com/alessandrostore/home	https://lh4.googleusercontent.com/9SNjR5qF_JWKvoW6EgH0iW_1VHjAI9N8d6AiOELdmHd_jbS6_FuR7IOUk4krgL7UzN5C2RZbOPp3DCGRQ-kTtQ8EM8xJuZs3O6MuVdpg4Zj-g-jYheYN=w170	bar	Brand Bar
-yellow-thing	Yellow thing	This is a yellow thing	20 EUR	in stock	https://sites.google.com/corp/google.com/alessandrostore/home	https://lh5.googleusercontent.com/XJ8ay7aEvDeSSfxbtSmo3Sopw8d-ymOKHdkFI-N9EjVRl_A9ZoBtzbuZ4br3JQHYkD9BxfeKzemXYlJB9Kqc_sA9qhmrn2N7qIcME1U_E-eSzY_2_Q=w170	qux	Brand Qux
-yellow-thing2	Yellow thing	This is a yellow thing	20 EUR	in stock	https://sites.google.com/corp/google.com/alessandrostore/home	https://lh5.googleusercontent.com/XJ8ay7aEvDeSSfxbtSmo3Sopw8d-ymOKHdkFI-N9EjVRl_A9ZoBtzbuZ4br3JQHYkD9BxfeKzemXYlJB9Kqc_sA9qhmrn2N7qIcME1U_E-eSzY_2_Q=w170	qux2	HYPE
+id	title	description	price	availability	link	image_link
+blue_potato_sku	Blue potato	This is an interesting blue potato	11 USD	in stock	https://alessandroshop.netlify.com/#blue_potato	https://alessandroshop.netlify.com/static/media/blue_potato.fca54374.png
+green_drop_sku	Green drop	You've never seen a green drop like this	21 USD	in stock	https://alessandroshop.netlify.com/#green_drop	https://alessandroshop.netlify.com/static/media/green_drop.aec7b7e7.png
+red_vase_sku	Red vase	This red vase is amazing	31 USD	in stock	https://alessandroshop.netlify.com/#red_vase	https://alessandroshop.netlify.com/static/media/red_vase.9b6c3522.png
+yellow_thingy_sku	Yellow thingy	What's this exactly? I don't know	24 USD	in stock	https://alessandroshop.netlify.com/#yellow_thingy	https://alessandroshop.netlify.com/static/media/yellow_thingy.1087e3d5.png
