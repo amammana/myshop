@@ -28,7 +28,7 @@ class Product extends React.Component {
     });
     ReactGA.plugin.execute('ecommerce', 'send');
 
-    const eventLabel = window.makeLabel({productSku: this.props.sku, merchantId: MERCHANT_ID});
+    const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID});
     if (eventLabel){
       ReactGA.event({
         category: "youtube",
@@ -61,7 +61,7 @@ class ShopApp extends React.Component {
     // Load the shared JavaScript code
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://codepen.io/amammana/pen/rNaGBEZ.js";
+    script.src = "https://www.gstatic.com/youtube/creatorcommerce/realtime_ga.js";
     document.head.appendChild(script);
 
     ReactGA.initialize('UA-122917699-1', {debug: true});
