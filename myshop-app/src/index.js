@@ -22,7 +22,7 @@ class Product extends React.Component {
         name: this.props.name,
         price: this.props.priceUsd,
         quantity: 1,
-        merchantId: MERCHANT_ID
+        merchantId: 777
       }]
     });
   }
