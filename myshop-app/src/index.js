@@ -16,6 +16,7 @@ class Product extends React.Component {
     window.gtag('event', 'purchase', {
       transaction_id: transactionId,
       value: this.props.priceUsd,
+      prova: this.props.name,
       items: [{
         id: this.props.sku,
         name: this.props.name,
