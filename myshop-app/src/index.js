@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactGA from 'react-ga';
 import './index.css';
 import BluePotato from './images/blue_potato.png'
 import GreenDrop from './images/green_drop.png'
@@ -13,18 +14,29 @@ class Product extends React.Component {
   onBuyClick() {
     alert('Congrats, you just bought the product!');
     const transactionId = 'tid-' + Date.now()
-    window.gtag('event', 'purchase', {
-      transaction_id: transactionId,
-      value: this.props.priceUsd,
-      prova: this.props.name,
-      items: [{
-        id: this.props.sku,
-        name: this.props.name,
-        price: this.props.priceUsd,
-        quantity: 1,
-        merchantId: 777
-      }]
+    ReactGA.plugin.execute('ecommerce', 'addTransaction', {
+      id: transactionId,
+      revenue: this.props.priceUsd,
     });
+
+    ReactGA.plugin.execute('ecommerce', 'addItem', {
+      id: transactionId,
+      name: this.props.name,
+      sku: this.props.sku,
+      price: this.props.priceUsd,
+      quantity: 1
+    });
+    ReactGA.plugin.execute('ecommerce', 'send');
+
+    const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID});
+    if (eventLabel){
+      ReactGA.event({
+        category: "youtube",
+        action: "conversion",
+        label: eventLabel,
+        price: this.props.priceUsd,
+      });
+    }
   }
 
   render() {
@@ -45,7 +57,17 @@ class Product extends React.Component {
 }
 
 class ShopApp extends React.Component {
+  componentDidMount(){
+    // Load the shared JavaScript code
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://www.gstatic.com/youtube/creatorcommerce/realtime_ga.js";
+    document.head.appendChild(script);
 
+    ReactGA.initialize('UA-122917699-1', {debug: true});
+    ReactGA.plugin.require('ecommerce')
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
   render() {
     return (
       <div className="shop-app">
