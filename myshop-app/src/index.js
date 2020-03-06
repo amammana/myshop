@@ -72,7 +72,9 @@ class ShopApp extends React.Component {
     return (
       <div className="shop-app">
         <h1>Alessandro's store</h1>
-        <a href="/">Homepage</a>
+        <p>
+          <a href="/">Homepage</a>
+        </p>
         <p>
           In this store you are going to find beautiful images that you can buy
         </p>
