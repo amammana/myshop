@@ -86,7 +86,7 @@ class ShopApp extends React.Component {
   componentDidMount(){
     const url = new URL(window.location.href);
     const utmTerm = url.searchParams.get("utm_term");
-    if (utm_content && utm_content.startswith("UC")){
+    if (utmTerm && utmTerm.startsWith("UC")){
       setCookie("ytRealtimeChannel", utmTerm);
       console.log("I am setting cookie: ", utmTerm);
     }
