@@ -54,6 +54,7 @@ class Product extends React.Component {
 
     const ytRealtimeChannel = getCookie("ytRealtimeChannel");
     if (ytRealtimeChannel){
+      console.log("I got cookie: ", ytRealtimeChannel);
     const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID, ytChannelId: ytRealtimeChannel});
       ReactGA.event({
 	category: "youtube",
@@ -84,9 +85,10 @@ class Product extends React.Component {
 class ShopApp extends React.Component {
   componentDidMount(){
     const url = new URL(window.location.href);
-    const utmContent = url.searchParams.get("utm_term");
+    const utmTerm = url.searchParams.get("utm_term");
     if (utm_content && utm_content.startswith("UC")){
-      setCookie("ytRealtimeChannel", utm_content);
+      setCookie("ytRealtimeChannel", utmTerm);
+      console.log("I am setting cookie: ", utmTerm);
     }
 
 
