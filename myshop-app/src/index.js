@@ -10,6 +10,30 @@ import MagicBalls from './images/magic_balls.png'
 
 const MERCHANT_ID = 124015903;
 
+// There are libraries to manipulate cookies.
+// This is just an example.
+function setCookie(cname, cvalue, seconds=60*60) {
+  const d = new Date();
+  d.setTime(d.getTime() + (seconds * 1000));
+  const expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  const name = cname + "=";
+  const ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 class Product extends React.Component {
   onBuyClick() {
     alert('Congrats, you just bought the product!');
@@ -28,13 +52,14 @@ class Product extends React.Component {
     });
     ReactGA.plugin.execute('ecommerce', 'send');
 
+    const ytRealtimeChannel = getCookie("ytRealtimeChannel");
+    if (ytRealtimeChannel){
     const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID});
-    if (eventLabel){
       ReactGA.event({
-        category: "youtube",
-        action: "conversion",
-        label: eventLabel,
-        price: this.props.priceUsd,
+	category: "youtube",
+	action: "conversion",
+	label: eventLabel,
+	price: this.props.priceUsd,
       });
     }
   }
@@ -58,11 +83,12 @@ class Product extends React.Component {
 
 class ShopApp extends React.Component {
   componentDidMount(){
-    // Load the shared JavaScript code
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://www.gstatic.com/youtube/creatorcommerce/realtime_ga.js";
-    document.head.appendChild(script);
+    const url = new URL(window.location.href);
+    const utmContent = url.searchParams.get("utm_term");
+    if (utm_content && utm_content.startswith("UC")){
+      setCookie("ytRealtimeChannel", utm_content);
+    }
+
 
     ReactGA.initialize('UA-122917699-1', {debug: true});
     ReactGA.plugin.require('ecommerce')
