@@ -60,6 +60,7 @@ class Product extends React.Component {
 	action: "conversion",
 	label: eventLabel,
 	price: this.props.priceUsd,
+        ytChannelId: ytRealtimeChannel,
       });
     }
   }
