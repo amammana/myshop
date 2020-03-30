@@ -54,13 +54,12 @@ class Product extends React.Component {
 
     const ytRealtimeChannel = getCookie("ytRealtimeChannel");
     if (ytRealtimeChannel){
-    const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID});
+    const eventLabel = JSON.stringify({sku: this.props.sku, merchantId: MERCHANT_ID, ytChannelId: ytRealtimeChannel});
       ReactGA.event({
 	category: "youtube",
 	action: "conversion",
 	label: eventLabel,
 	price: this.props.priceUsd,
-        ytChannelId: ytRealtimeChannel,
       });
     }
   }
